@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WebGIS Pelayanan SD Kota Malang</title>
+
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+<link rel="stylesheet"
+href="css/style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div id="app">
+
+<div id="sidebar">
+
+  <div class="app-header">
+    <p class="eyebrow">Dinas Pendidikan · Kota Malang</p>
+    <h1>WebGIS Pelayanan SD</h1>
+    <p>Pemetaan jangkauan layanan sekolah dasar per kelurahan.</p>
+  </div>
+
+  <div class="card">
+    <h3>Statistik</h3>
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="stat-value" id="totalSD">0</div>
+        <div class="stat-label">Total SD</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" id="totalDesa">0</div>
+        <div class="stat-label">Kelurahan</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" id="sdNegeri">0</div>
+        <div class="stat-label">SD Negeri</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" id="sdSwasta">0</div>
+        <div class="stat-label">SD Swasta</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" id="totalCluster">0</div>
+        <div class="stat-label">Cluster</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value accent" id="avgPelayanan">0%</div>
+        <div class="stat-label">Rata-rata Layanan</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Pencarian SD</h3>
+    <label class="field-label" for="searchInput">Nama sekolah</label>
+    <input
+    type="text"
+    id="searchInput"
+    placeholder="Cari nama sekolah…">
+  </div>
+
+  <div class="card">
+    <h3>Filter Status</h3>
+    <label class="field-label" for="statusFilter">Status sekolah</label>
+    <select id="statusFilter">
+      <option value="all">Semua status</option>
+      <option value="Negeri">Negeri</option>
+      <option value="Swasta">Swasta</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h3>Legenda Cluster</h3>
+    <div class="legend-list" id="legendList">
+      <div class="legend-row"><span class="swatch c0"></span> Cluster 0</div>
+      <div class="legend-row"><span class="swatch c1"></span> Cluster 1</div>
+      <div class="legend-row"><span class="swatch c2"></span> Cluster 2</div>
+      <div class="legend-row"><span class="swatch c3"></span> Cluster 3</div>
+      <div class="legend-row"><span class="swatch c4"></span> Cluster 4</div>
+    </div>
+    <div class="legend-hint">Klik salah satu titik SD di peta untuk menampilkan area &amp; jangkauan layanan cluster tersebut.</div>
+  </div>
+
+  <div class="card chart-card">
+    <h3>Negeri vs Swasta</h3>
+    <canvas id="chartStatus"></canvas>
+  </div>
+
+  <div class="card chart-card">
+    <h3>Jumlah SD per Cluster</h3>
+    <canvas id="chartCluster"></canvas>
+  </div>
+
+  <div class="card chart-card">
+    <h3>Top 10 Kelurahan Terlayani</h3>
+    <canvas id="chartKelurahan"></canvas>
+  </div>
+
+  <div class="card chart-card">
+    <h3>Kategori Pelayanan</h3>
+    <canvas id="chartKategori"></canvas>
+  </div>
+
+</div>
+
+<div id="map-wrap">
+  <div class="map-hint hidden" id="mapHint">
+    <span class="dot"></span>
+    <span>Klik area kosong di peta untuk menutup tampilan cluster.</span>
+  </div>
+  <div id="map"></div>
+</div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,415 @@
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root{
+  --bg-app:        #f4f5f7;
+  --bg-panel:      #ffffff;
+  --bg-soft:       #f8f9fb;
+  --border:        #e6e8ec;
+  --border-soft:   #eef0f3;
+
+  --text-primary:  #1c2128;
+  --text-secondary:#5b6470;
+  --text-muted:    #8a92a0;
+
+  --accent:        #2563eb;
+  --accent-soft:   #eaf1ff;
+  --accent-hover:  #1d4fc4;
+
+  --negeri:        #2563eb;
+  --swasta:        #f59e0b;
+
+  --c0:#e4572e;
+  --c1:#2563eb;
+  --c2:#2f9e62;
+  --c3:#8e5cd9;
+  --c4:#f5a524;
+
+  --radius-lg: 14px;
+  --radius-md: 10px;
+  --radius-sm: 7px;
+
+  --shadow-sm: 0 1px 2px rgba(20,24,33,.04);
+  --shadow-md: 0 4px 16px rgba(20,24,33,.06);
+  --shadow-lg: 0 12px 32px rgba(20,24,33,.10);
+
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+}
+
+*{ box-sizing: border-box; }
+
+html, body{
+  margin: 0;
+  height: 100%;
+  font-family: var(--font-ui);
+  color: var(--text-primary);
+  background: var(--bg-app);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================
+   LAYOUT
+   ============================================ */
+#app{
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#sidebar{
+  width: 360px;
+  flex-shrink: 0;
+  background: var(--bg-app);
+  padding: 20px 18px 28px;
+  overflow-y: auto;
+  border-right: 1px solid var(--border);
+}
+
+#sidebar::-webkit-scrollbar{ width: 8px; }
+#sidebar::-webkit-scrollbar-thumb{ background: #d7dae0; border-radius: 8px; }
+#sidebar::-webkit-scrollbar-track{ background: transparent; }
+
+#map-wrap{
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+#map{
+  height: 100%;
+  width: 100%;
+  background: #e9edf1;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.app-header{
+  margin: 4px 4px 18px;
+}
+
+.app-header .eyebrow{
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 4px;
+}
+
+.app-header h1{
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0;
+  color: var(--text-primary);
+  letter-spacing: -.01em;
+}
+
+.app-header p{
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+}
+
+/* ============================================
+   CARD
+   ============================================ */
+.card{
+  background: var(--bg-panel);
+  border: 1px solid var(--border-soft);
+  padding: 16px;
+  margin-bottom: 12px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.card h3{
+  font-size: 12.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--text-muted);
+  margin: 0 0 12px;
+}
+
+/* ============================================
+   STAT GRID
+   ============================================ */
+.stat-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.stat-grid .stat-full{
+  grid-column: 1 / -1;
+}
+
+.stat{
+  background: var(--bg-soft);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+}
+
+.stat .stat-value{
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.15;
+  letter-spacing: -.02em;
+}
+
+.stat .stat-value.accent{ color: var(--accent); }
+
+.stat .stat-label{
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ============================================
+   FORM CONTROLS
+   ============================================ */
+.field-label{
+  display: block;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+input[type="text"],
+select{
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-soft);
+  font-size: 13.5px;
+  font-family: var(--font-ui);
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color .15s ease, background .15s ease;
+}
+
+input[type="text"]::placeholder{ color: var(--text-muted); }
+
+input[type="text"]:focus,
+select:focus{
+  border-color: var(--accent);
+  background: var(--bg-panel);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+select{ cursor: pointer; }
+
+/* ============================================
+   LEGEND
+   ============================================ */
+.legend-list{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.legend-row{
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.legend-row .swatch{
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(255,255,255,.6) inset;
+}
+
+.legend-row .count{
+  margin-left: auto;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.c0{ background: var(--c0); }
+.c1{ background: var(--c1); }
+.c2{ background: var(--c2); }
+.c3{ background: var(--c3); }
+.c4{ background: var(--c4); }
+
+.legend-hint{
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-soft);
+  font-size: 11.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ============================================
+   CHART CARDS
+   ============================================ */
+.chart-card canvas{
+  max-height: 220px;
+}
+
+/* ============================================
+   MAP UI: floating reset hint
+   ============================================ */
+.map-hint{
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 500;
+  background: rgba(255,255,255,.95);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.map-hint.hidden{
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+}
+
+.map-hint .dot{
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ============================================
+   LEAFLET POPUP OVERRIDE — rapi & elegan
+   ============================================ */
+.leaflet-popup-content-wrapper{
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 0;
+}
+
+.leaflet-popup-content{
+  margin: 0;
+  min-width: 220px;
+}
+
+.leaflet-popup-tip{
+  box-shadow: var(--shadow-md);
+}
+
+.popup-sd{
+  font-family: var(--font-ui);
+}
+
+.popup-sd .popup-head{
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.popup-sd .popup-title{
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.popup-sd .popup-badge{
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.popup-sd .popup-badge.negeri{
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.popup-sd .popup-badge.swasta{
+  background: #fef3e2;
+  color: #b45309;
+}
+
+.popup-sd .popup-body{
+  padding: 10px 14px 12px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+}
+
+.popup-sd .popup-row{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 4px 0;
+}
+
+.popup-sd .popup-row .k{ color: var(--text-muted); }
+.popup-sd .popup-row .v{ color: var(--text-primary); font-weight: 600; text-align: right; }
+
+.popup-sd .popup-foot{
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-soft);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.popup-desa .popup-title{
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 14px 2px;
+  color: var(--text-primary);
+}
+
+.popup-desa .popup-body{
+  padding: 4px 14px 12px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+}
+
+/* ============================================
+   LEAFLET LAYER CONTROL — selaraskan dengan tema
+   ============================================ */
+.leaflet-control-layers{
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-md) !important;
+  border: 1px solid var(--border) !important;
+  font-family: var(--font-ui);
+}
+
+.leaflet-control-layers-toggle{
+  border-radius: var(--radius-md) !important;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 860px){
+  #app{ flex-direction: column; }
+  #sidebar{
+    width: 100%;
+    height: 46%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  #map-wrap{ height: 54%; }
+}
